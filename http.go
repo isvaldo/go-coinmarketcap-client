@@ -1,32 +1,61 @@
 package coinmarket
 
 import (
-	"net/http"
+	"encoding/json"
+	"fmt"
+	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
-	"encoding/json"
+	"net/http"
 )
 
 type HTTP struct {
-	BaseURL string
+	BaseURL    string
 	HTTPClient *http.Client
 }
 
-func (c *HTTP) getTicker(coin string) (*TickerResponse, error) {
+const (
+	contextPath         = "/v1/ticker"
+	getTickerPath       = "%s/%s/"
+	getTickerLast       = "%s/"
+	getTickerWithLimits = "%s/?limit=%s"
+	getTickerInRange    = "%s/?start=%s&limit=%s"
+)
 
-	return nil,nil
+//getTicker resquest info of one coin (Ex bitcoin)
+func (c *HTTP) getTicker(coinName string) (*TickerItem, error) {
+	var responseRaw []json.RawMessage
+	url := fmt.Sprintf("%s"+getTickerPath, c.BaseURL, contextPath, coinName)
+	if err := c.doRequest("GET", url, nil, &responseRaw); err != nil {
+		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
+	}
+	item := &TickerItem{}
+	if err := json.Unmarshal(responseRaw[0], item); err != nil {
+		return nil, errors.Wrapf(err, "Error on unmarshal data:[%s]", responseRaw[0])
+	}
+	return item, nil
 }
 
-func (c *HTTP)  getTickerLast() (*TickerResponse, error){
-	return nil,nil
+func (c *HTTP) getTickerLast() (*TickerResponse, error) {
+	var items []TickerItem
+	url := fmt.Sprintf("%s"+getTickerLast, c.BaseURL, contextPath)
+	if err := c.doRequest("GET", url, nil, &items); err != nil {
+		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
+	}
+	return &TickerResponse{TickerList: items}, nil
 }
 
 func (c *HTTP) getTickerWithLimits(limit int) (*TickerResponse, error) {
-	return nil,nil
+	var items []TickerItem
+	url := fmt.Sprintf("%s"+getTickerWithLimits, c.BaseURL, contextPath, limit)
+	if err := c.doRequest("GET", url, nil, &items); err != nil {
+		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
+	}
+	return &TickerResponse{TickerList: items}, nil
 }
 
-func (c *HTTP) getTickerInRange(start int, end int) (*TickerResponse, error){
-	return nil,nil
+func (c *HTTP) getTickerInRange(start int, end int) (*TickerResponse, error) {
+	return nil, nil
 }
 
 //doRequest is help for execute request and parse the response

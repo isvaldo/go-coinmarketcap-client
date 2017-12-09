@@ -3,15 +3,14 @@ package coinmarket
 import "net/http"
 
 type Interface interface {
-	getTicker(coin string) (*TickerResponse, error)
+	getTicker(coinName string) (*TickerItem, error)
 	getTickerLast() (*TickerResponse, error)
 	getTickerWithLimits(limit int) (*TickerResponse, error)
 	getTickerInRange(start int, end int) (*TickerResponse, error)
 }
 
-
 //NewWithClient return a instance from MarketTicker, with optional client configuration
-func NewWithClient(baseURL string, client *http.Client, ) (Interface, error) {
+func NewWithClient(baseURL string, client *http.Client) (Interface, error) {
 	return NewMarketTicker(baseURL, client)
 }
 
