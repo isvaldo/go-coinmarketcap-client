@@ -10,13 +10,13 @@ func TestTickerMustBeReturnOneItem(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	response, err := client.getTickerLast()
+	response, err := client.getTickerInRange(0, 100)
 
 	if err != nil {
 		panic(err)
 	}
-
+	response.SortByAvailableSupply()
 	for index := range response.TickerList {
-		fmt.Println(response.TickerList[index].Name, response.TickerList[index].PercentChange1H)
+		fmt.Println(response.TickerList[index].Name, response.TickerList[index].AvailableSupply)
 	}
 }

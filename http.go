@@ -18,8 +18,8 @@ const (
 	contextPath         = "/v1/ticker"
 	getTickerPath       = "%s/%s/"
 	getTickerLast       = "%s/"
-	getTickerWithLimits = "%s/?limit=%s"
-	getTickerInRange    = "%s/?start=%s&limit=%s"
+	getTickerWithLimits = "%s/?limit=%d"
+	getTickerInRange    = "%s/?start=%d&limit=%d"
 )
 
 //getTicker resquest info of one coin (Ex bitcoin)
@@ -55,7 +55,12 @@ func (c *HTTP) getTickerWithLimits(limit int) (*TickerResponse, error) {
 }
 
 func (c *HTTP) getTickerInRange(start int, end int) (*TickerResponse, error) {
-	return nil, nil
+	var items []TickerItem
+	url := fmt.Sprintf("%s"+getTickerInRange, c.BaseURL, contextPath, start, end)
+	if err := c.doRequest("GET", url, nil, &items); err != nil {
+		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
+	}
+	return &TickerResponse{TickerList: items}, nil
 }
 
 //doRequest is help for execute request and parse the response
@@ -66,7 +71,6 @@ func (c *HTTP) doRequest(method, url string, body io.Reader, to interface{}) err
 	}
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
-	//start := time.Now()
 	res, err := c.HTTPClient.Do(req)
 	if err != nil {
 		return err
@@ -77,6 +81,5 @@ func (c *HTTP) doRequest(method, url string, body io.Reader, to interface{}) err
 		io.Copy(ioutil.Discard, res.Body)
 		return nil
 	}
-	//elapsed := time.Since(start)
 	return json.NewDecoder(res.Body).Decode(to)
 }
