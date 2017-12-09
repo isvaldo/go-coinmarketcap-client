@@ -15,8 +15,9 @@ func TestTickerMustBeReturnOneItem(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	response.SortByAvailableSupply()
-	for index := range response.TickerList {
-		fmt.Println(response.TickerList[index].Name, response.TickerList[index].AvailableSupply)
+
+	startsWithFilter := response.GetCoinSymbolStartsWith("bt")
+	for index := range startsWithFilter {
+		fmt.Println(startsWithFilter[index].Symbol)
 	}
 }

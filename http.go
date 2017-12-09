@@ -9,11 +9,13 @@ import (
 	"net/http"
 )
 
+// concrete Implementation of coinmarket.Interface
 type HTTP struct {
 	BaseURL    string
 	HTTPClient *http.Client
 }
 
+//resources path's
 const (
 	contextPath         = "/v1/ticker"
 	getTickerPath       = "%s/%s/"
@@ -22,7 +24,7 @@ const (
 	getTickerInRange    = "%s/?start=%d&limit=%d"
 )
 
-//getTicker resquest info of one coin (Ex bitcoin)
+//getTicker request the snapshot from finance market for a coin
 func (c *HTTP) getTicker(coinName string) (*TickerItem, error) {
 	var responseRaw []json.RawMessage
 	url := fmt.Sprintf("%s"+getTickerPath, c.BaseURL, contextPath, coinName)
@@ -36,6 +38,7 @@ func (c *HTTP) getTicker(coinName string) (*TickerItem, error) {
 	return item, nil
 }
 
+//getTickerLast request last snapshot's from finance market of the last 100 ranked coins
 func (c *HTTP) getTickerLast() (*TickerResponse, error) {
 	var items []TickerItem
 	url := fmt.Sprintf("%s"+getTickerLast, c.BaseURL, contextPath)
@@ -45,6 +48,7 @@ func (c *HTTP) getTickerLast() (*TickerResponse, error) {
 	return &TickerResponse{TickerList: items}, nil
 }
 
+//getTickerLast request last snapshot's from finance market of the last ranked coins(with limit)
 func (c *HTTP) getTickerWithLimits(limit int) (*TickerResponse, error) {
 	var items []TickerItem
 	url := fmt.Sprintf("%s"+getTickerWithLimits, c.BaseURL, contextPath, limit)
@@ -54,6 +58,7 @@ func (c *HTTP) getTickerWithLimits(limit int) (*TickerResponse, error) {
 	return &TickerResponse{TickerList: items}, nil
 }
 
+//getTickerInRange request a range of finance market snapshot
 func (c *HTTP) getTickerInRange(start int, end int) (*TickerResponse, error) {
 	var items []TickerItem
 	url := fmt.Sprintf("%s"+getTickerInRange, c.BaseURL, contextPath, start, end)
