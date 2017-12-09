@@ -25,7 +25,7 @@ const (
 )
 
 //getTicker request the snapshot from finance market for a coin
-func (c *HTTP) getTicker(coinName string) (*TickerItem, error) {
+func (c *HTTP) GetTicker(coinName string) (*TickerItem, error) {
 	var responseRaw []json.RawMessage
 	url := fmt.Sprintf("%s"+getTickerPath, c.BaseURL, contextPath, coinName)
 	if err := c.doRequest("GET", url, nil, &responseRaw); err != nil {
@@ -39,7 +39,7 @@ func (c *HTTP) getTicker(coinName string) (*TickerItem, error) {
 }
 
 //getTickerLast request last snapshot's from finance market of the last 100 ranked coins
-func (c *HTTP) getTickerLast() (*TickerResponse, error) {
+func (c *HTTP) GetTickerLast() (*TickerResponse, error) {
 	var items []TickerItem
 	url := fmt.Sprintf("%s"+getTickerLast, c.BaseURL, contextPath)
 	if err := c.doRequest("GET", url, nil, &items); err != nil {
@@ -49,7 +49,7 @@ func (c *HTTP) getTickerLast() (*TickerResponse, error) {
 }
 
 //getTickerLast request last snapshot's from finance market of the last ranked coins(with limit)
-func (c *HTTP) getTickerWithLimits(limit int) (*TickerResponse, error) {
+func (c *HTTP) GetTickerWithLimits(limit int) (*TickerResponse, error) {
 	var items []TickerItem
 	url := fmt.Sprintf("%s"+getTickerWithLimits, c.BaseURL, contextPath, limit)
 	if err := c.doRequest("GET", url, nil, &items); err != nil {
@@ -59,7 +59,7 @@ func (c *HTTP) getTickerWithLimits(limit int) (*TickerResponse, error) {
 }
 
 //getTickerInRange request a range of finance market snapshot
-func (c *HTTP) getTickerInRange(start int, end int) (*TickerResponse, error) {
+func (c *HTTP) GetTickerInRange(start int, end int) (*TickerResponse, error) {
 	var items []TickerItem
 	url := fmt.Sprintf("%s"+getTickerInRange, c.BaseURL, contextPath, start, end)
 	if err := c.doRequest("GET", url, nil, &items); err != nil {
