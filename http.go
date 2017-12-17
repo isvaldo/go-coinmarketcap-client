@@ -17,17 +17,17 @@ type HTTP struct {
 
 //resources path's
 const (
-	contextPath         = "/v1/ticker"
-	getTickerPath       = "%s/%s/"
-	getTickerLast       = "%s/"
-	getTickerWithLimits = "%s/?limit=%d"
-	getTickerInRange    = "%s/?start=%d&limit=%d"
+	ContextPath         = "/v1/ticker"
+	GetTickerPath       = "%s/%s/"
+	GetTickerLast       = "%s/"
+	GetTickerWithLimits = "%s/?limit=%d"
+	GetTickerInRange    = "%s/?start=%d&limit=%d"
 )
 
 //getTicker request the snapshot from finance market for a coin
 func (c *HTTP) GetTicker(coinName string) (*TickerItem, error) {
 	var responseRaw []json.RawMessage
-	url := fmt.Sprintf("%s"+getTickerPath, c.BaseURL, contextPath, coinName)
+	url := fmt.Sprintf("%s"+GetTickerPath, c.BaseURL, ContextPath, coinName)
 	if err := c.doRequest("GET", url, nil, &responseRaw); err != nil {
 		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
 	}
@@ -41,7 +41,7 @@ func (c *HTTP) GetTicker(coinName string) (*TickerItem, error) {
 //getTickerLast request last snapshot's from finance market of the last 100 ranked coins
 func (c *HTTP) GetTickerLast() (*TickerResponse, error) {
 	var items []TickerItem
-	url := fmt.Sprintf("%s"+getTickerLast, c.BaseURL, contextPath)
+	url := fmt.Sprintf("%s"+GetTickerLast, c.BaseURL, ContextPath)
 	if err := c.doRequest("GET", url, nil, &items); err != nil {
 		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
 	}
@@ -51,7 +51,7 @@ func (c *HTTP) GetTickerLast() (*TickerResponse, error) {
 //getTickerLast request last snapshot's from finance market of the last ranked coins(with limit)
 func (c *HTTP) GetTickerWithLimits(limit int) (*TickerResponse, error) {
 	var items []TickerItem
-	url := fmt.Sprintf("%s"+getTickerWithLimits, c.BaseURL, contextPath, limit)
+	url := fmt.Sprintf("%s"+GetTickerWithLimits, c.BaseURL, ContextPath, limit)
 	if err := c.doRequest("GET", url, nil, &items); err != nil {
 		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
 	}
@@ -61,7 +61,7 @@ func (c *HTTP) GetTickerWithLimits(limit int) (*TickerResponse, error) {
 //getTickerInRange request a range of finance market snapshot
 func (c *HTTP) GetTickerInRange(start int, end int) (*TickerResponse, error) {
 	var items []TickerItem
-	url := fmt.Sprintf("%s"+getTickerInRange, c.BaseURL, contextPath, start, end)
+	url := fmt.Sprintf("%s"+GetTickerInRange, c.BaseURL, ContextPath, start, end)
 	if err := c.doRequest("GET", url, nil, &items); err != nil {
 		return nil, errors.Wrapf(err, "Error on perform request url:[%s]", url)
 	}
