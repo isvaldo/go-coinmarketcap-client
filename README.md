@@ -25,7 +25,7 @@ simple way to consult and explore the data of the coins
   	"fmt"
   	"github.com/isvaldo/go-coinmarketcap-client"
   )
-  
+        
   var Client coinmarket.Interface
   
   func init() {
