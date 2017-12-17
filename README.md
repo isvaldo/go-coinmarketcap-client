@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/img/troll-logo.png" width="360"></p>
+<p align="center"><img src="docs/img/troll-logo.jpg" width="360"></p>
 <p align="center">
   <a href="https://travis-ci.org/golang/dep"><img src="https://travis-ci.org/golang/dep.svg?branch=master" alt="Build Status"></img></a>
   <a href="https://ci.appveyor.com/project/golang/dep"><img src="https://ci.appveyor.com/api/projects/status/github/golang/dep?svg=true&branch=master&passingText=Windows%20-%20OK&failingText=Windows%20-%20failed&pendingText=Windows%20-%20pending" alt="Windows Build Status"></a>
