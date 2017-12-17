@@ -110,23 +110,18 @@ func TestTickerLastMustBeReturnMockValues(t *testing.T) {
 
 			response, err := client.GetTickerLast()
 			convey.So(err, convey.ShouldBeNil)
+			coins := []string{
+				"BTC", "ETH", "BCH",
+				"XRP", "LTC", "ADA",
+				"MIOTA", "DASH", "XEM",
+				"XMR", "BTG", "XLM",
+				"EOS", "NEO", "ETC",
+			}
 
-			convey.So(response.TickerList[0].Symbol, convey.ShouldEqual, "BTC")
-			convey.So(response.TickerList[1].Symbol, convey.ShouldEqual, "ETH")
-			convey.So(response.TickerList[2].Symbol, convey.ShouldEqual, "BCH")
-			convey.So(response.TickerList[3].Symbol, convey.ShouldEqual, "XRP")
-			convey.So(response.TickerList[4].Symbol, convey.ShouldEqual, "LTC")
-			convey.So(response.TickerList[5].Symbol, convey.ShouldEqual, "ADA")
-			convey.So(response.TickerList[6].Symbol, convey.ShouldEqual, "MIOTA")
-			convey.So(response.TickerList[7].Symbol, convey.ShouldEqual, "DASH")
-			convey.So(response.TickerList[8].Symbol, convey.ShouldEqual, "XEM")
-			convey.So(response.TickerList[9].Symbol, convey.ShouldEqual, "XMR")
-			convey.So(response.TickerList[10].Symbol, convey.ShouldEqual, "BTG")
-			convey.So(response.TickerList[11].Symbol, convey.ShouldEqual, "XLM")
-			convey.So(response.TickerList[12].Symbol, convey.ShouldEqual, "EOS")
-			convey.So(response.TickerList[13].Symbol, convey.ShouldEqual, "NEO")
-			convey.So(response.TickerList[14].Symbol, convey.ShouldEqual, "ETC")
-			convey.So(response.TickerList[15].Symbol, convey.ShouldEqual, "TRX")
+			for index, coin := range coins {
+				convey.So(response.TickerList[index].Symbol, convey.ShouldEqual, coin)
+			}
+
 		})
 	})
 }
