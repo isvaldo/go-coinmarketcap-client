@@ -36,20 +36,21 @@ func (c *TickerResponse) Size() int {
 	return len(c.TickerList)
 }
 
+func (c *TickerResponse) checkIfEmpty() error {
+	if len(c.TickerList) == 0 {
+		return errors.New("response is empty")
+	}
+	return nil
+}
+
 //First return first item of response list
 func (c *TickerResponse) First() (*TickerItem, error) {
-	if len(c.TickerList) == 0 {
-		return nil, errors.New("response is empty")
-	}
-	return &c.TickerList[0], nil
+	return &c.TickerList[0], c.checkIfEmpty()
 }
 
 //Last return last item from response list
 func (c *TickerResponse) Last() (*TickerItem, error) {
-	if len(c.TickerList) == 0 {
-		return nil, errors.New("response is empty")
-	}
-	return &c.TickerList[len(c.TickerList)-1], nil
+	return &c.TickerList[len(c.TickerList)-1], c.checkIfEmpty()
 }
 
 //SortByPriceBtc sort response by price of bicoin field
