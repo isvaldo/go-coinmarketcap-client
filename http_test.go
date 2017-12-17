@@ -110,18 +110,12 @@ func TestTickerLastMustBeReturnMockValues(t *testing.T) {
 
 			response, err := client.GetTickerLast()
 			convey.So(err, convey.ShouldBeNil)
-			coins := []string{
-				"BTC", "ETH", "BCH",
-				"XRP", "LTC", "ADA",
-				"MIOTA", "DASH", "XEM",
-				"XMR", "BTG", "XLM",
-				"EOS", "NEO", "ETC",
+			coins := []string{"BTC", "ETH", "BCH", "XRP", "LTC", "ADA", "MIOTA",
+				"DASH", "XEM", "XMR", "BTG", "XLM", "EOS", "NEO", "ETC",
 			}
-
 			for index, coin := range coins {
 				convey.So(response.TickerList[index].Symbol, convey.ShouldEqual, coin)
 			}
-
 		})
 	})
 }
