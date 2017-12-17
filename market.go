@@ -56,10 +56,8 @@ func (c *TickerResponse) Last() (*TickerItem, error) {
 //ref field: PriceBtc
 func (c *TickerResponse) SortByPriceBtc() {
 	sort.Slice(c.TickerList, func(i, j int) bool {
-
-		itemA, _ := strconv.ParseFloat(c.TickerList[i].PriceBtc, 64)
-		itemB, _ := strconv.ParseFloat(c.TickerList[j].PriceBtc, 64)
-		return itemA > itemB
+		return parseCompareStringToFloat(c.TickerList[i].PriceBtc,
+			c.TickerList[j].PriceBtc)
 	})
 }
 
@@ -67,9 +65,8 @@ func (c *TickerResponse) SortByPriceBtc() {
 //ref field: PercentChange1H
 func (c *TickerResponse) SortByPercentChange1H() {
 	sort.Slice(c.TickerList, func(i, j int) bool {
-		itemA, _ := strconv.ParseFloat(c.TickerList[i].PercentChange1H, 64)
-		itemB, _ := strconv.ParseFloat(c.TickerList[j].PercentChange1H, 64)
-		return itemA > itemB
+		return parseCompareStringToFloat(c.TickerList[i].PercentChange1H,
+			c.TickerList[j].PercentChange1H)
 	})
 }
 
@@ -77,9 +74,8 @@ func (c *TickerResponse) SortByPercentChange1H() {
 //ref field: PercentChange24H
 func (c *TickerResponse) SortByPercentChange24H() {
 	sort.Slice(c.TickerList, func(i, j int) bool {
-		itemA, _ := strconv.ParseFloat(c.TickerList[i].PercentChange24H, 64)
-		itemB, _ := strconv.ParseFloat(c.TickerList[j].PercentChange24H, 64)
-		return itemA > itemB
+		return parseCompareStringToFloat(c.TickerList[i].PercentChange24H,
+			c.TickerList[j].PercentChange24H)
 	})
 }
 
@@ -87,9 +83,8 @@ func (c *TickerResponse) SortByPercentChange24H() {
 //ref field: PercentChange7D
 func (c *TickerResponse) SortByPercentChange7D() {
 	sort.Slice(c.TickerList, func(i, j int) bool {
-		itemA, _ := strconv.ParseFloat(c.TickerList[i].PercentChange7D, 64)
-		itemB, _ := strconv.ParseFloat(c.TickerList[j].PercentChange7D, 64)
-		return itemA > itemB
+		return parseCompareStringToFloat(c.TickerList[i].PercentChange7D,
+			c.TickerList[j].PercentChange7D)
 	})
 }
 
@@ -97,9 +92,8 @@ func (c *TickerResponse) SortByPercentChange7D() {
 //ref field: AvailableSupply
 func (c *TickerResponse) SortByAvailableSupply() {
 	sort.Slice(c.TickerList, func(i, j int) bool {
-		itemA, _ := strconv.ParseFloat(c.TickerList[i].AvailableSupply, 64)
-		itemB, _ := strconv.ParseFloat(c.TickerList[j].AvailableSupply, 64)
-		return itemA > itemB
+		return parseCompareStringToFloat(c.TickerList[i].AvailableSupply,
+			c.TickerList[j].AvailableSupply)
 	})
 }
 
@@ -107,9 +101,8 @@ func (c *TickerResponse) SortByAvailableSupply() {
 //ref field: MarketCapUsd
 func (c *TickerResponse) SortByMarketCapUsd() {
 	sort.Slice(c.TickerList, func(i, j int) bool {
-		itemA, _ := strconv.ParseFloat(c.TickerList[i].MarketCapUsd, 64)
-		itemB, _ := strconv.ParseFloat(c.TickerList[j].MarketCapUsd, 64)
-		return itemA > itemB
+		return parseCompareStringToFloat(c.TickerList[i].MarketCapUsd,
+			c.TickerList[j].MarketCapUsd)
 	})
 }
 
@@ -133,4 +126,10 @@ func (c *TickerResponse) GetCoinSymbolStartsWith(prefix string) []TickerItem {
 		}
 	}
 	return response
+}
+
+func parseCompareStringToFloat(stringA string, stringB string) bool {
+	itemA, _ := strconv.ParseFloat(stringA, 64)
+	itemB, _ := strconv.ParseFloat(stringB, 64)
+	return itemA > itemB
 }
