@@ -17,7 +17,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
- - go test -v ./... -coverprofile=c.out
+ - go test -coverprofile=c.out
 
 after_script:
   - ./cc-test-reporter after-build
