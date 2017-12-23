@@ -3,6 +3,13 @@ go:
  - 1.9.2
  - 1.8.x
  - master
+before_install:
+  # Setup dependency management tool
+  - curl -L -s https://github.com/golang/dep/releases/download/v0.3.1/dep-linux-amd64 -o $GOPATH/bin/dep
+  - chmod +x $GOPATH/bin/dep
+
+install:
+  - dep ensure
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
