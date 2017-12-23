@@ -119,3 +119,55 @@ func TestTickerLastMustBeReturnMockValues(t *testing.T) {
 		})
 	})
 }
+
+func TestTickerLimitMustBeReturnMockValuesAndLimitedByTree(t *testing.T) {
+	defer httpmock.DeactivateAndReset()
+	convey.Convey("Given a dummy test server", t, func() {
+		client, err := mustGetDummyTestServer("/v1/ticker/limit=3", "tickerWithLimit.json")
+		convey.So(err, convey.ShouldBeNil)
+		convey.So(client, convey.ShouldNotBeNil)
+		convey.Convey("when you apply limit for 3 itens in GetTickerWithLimits must be respected", func() {
+			response, err := client.GetTickerWithLimits(3)
+			convey.So(err, convey.ShouldBeNil)
+			convey.Convey(len(response.TickerList), convey.ShouldEqual, 3)
+		})
+
+		convey.Convey("when you apply limit for 3 itens in GetTickerWithLimits must return mock values", func() {
+			response, err := client.GetTickerWithLimits(3)
+			convey.So(err, convey.ShouldBeNil)
+			convey.Convey(response.TickerList[0].Name, convey.ShouldEqual, "Bitcoin")
+			convey.Convey(response.TickerList[1].Name, convey.ShouldEqual, "Ethereum")
+			convey.Convey(response.TickerList[2].Name, convey.ShouldEqual, "Bitcoin Cash")
+		})
+
+	})
+}
+
+func TestTickerWithRangeMustBeReturnMockRange(t *testing.T) {
+	defer httpmock.DeactivateAndReset()
+	convey.Convey("Given a dummy test server", t, func() {
+		client, err := mustGetDummyTestServer("/v1/ticker/start=0&limit=3", "tickerWithLimit.json")
+		convey.So(err, convey.ShouldBeNil)
+		convey.So(client, convey.ShouldNotBeNil)
+		convey.Convey("when you apply start 0 and limit 3 in GetTickerInRange must be respected", func() {
+			response, err := client.GetTickerInRange(0, 3)
+			convey.So(err, convey.ShouldBeNil)
+			convey.Convey(len(response.TickerList), convey.ShouldEqual, 3)
+		})
+
+		convey.Convey("when you apply start 1 and limit 3 in GetTickerInRange must be respected", func() {
+			response, err := client.GetTickerInRange(1, 3)
+			convey.So(err, convey.ShouldBeNil)
+			convey.Convey(len(response.TickerList), convey.ShouldEqual, 2)
+		})
+
+		convey.Convey("when you apply start 0 and limit 3 in GetTickerInRange must return mock values", func() {
+			response, err := client.GetTickerWithLimits(3)
+			convey.So(err, convey.ShouldBeNil)
+			convey.Convey(response.TickerList[0].Name, convey.ShouldEqual, "Bitcoin")
+			convey.Convey(response.TickerList[1].Name, convey.ShouldEqual, "Ethereum")
+			convey.Convey(response.TickerList[2].Name, convey.ShouldEqual, "Bitcoin Cash")
+		})
+
+	})
+}

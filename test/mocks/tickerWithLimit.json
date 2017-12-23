@@ -1,0 +1,53 @@
+[
+  {
+    "id": "bitcoin",
+    "name": "Bitcoin",
+    "symbol": "BTC",
+    "rank": "1",
+    "price_usd": "19339.9",
+    "price_btc": "1.0",
+    "24h_volume_usd": "13506900000.0",
+    "market_cap_usd": "323906811269",
+    "available_supply": "16748112.0",
+    "total_supply": "16748112.0",
+    "max_supply": "21000000.0",
+    "percent_change_1h": "0.6",
+    "percent_change_24h": "-0.51",
+    "percent_change_7d": "22.8",
+    "last_updated": "1513548854"
+  },
+  {
+    "id": "ethereum",
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "rank": "2",
+    "price_usd": "734.078",
+    "price_btc": "0.0380381",
+    "24h_volume_usd": "2152930000.0",
+    "market_cap_usd": "70767139451.0",
+    "available_supply": "96402752.0",
+    "total_supply": "96402752.0",
+    "max_supply": null,
+    "percent_change_1h": "0.81",
+    "percent_change_24h": "6.3",
+    "percent_change_7d": "62.72",
+    "last_updated": "1513548856"
+  },
+  {
+    "id": "bitcoin-cash",
+    "name": "Bitcoin Cash",
+    "symbol": "BCH",
+    "rank": "3",
+    "price_usd": "1875.2",
+    "price_btc": "0.0971685",
+    "24h_volume_usd": "1042790000.0",
+    "market_cap_usd": "31617583120.0",
+    "available_supply": "16860913.0",
+    "total_supply": "16860913.0",
+    "max_supply": "21000000.0",
+    "percent_change_1h": "0.02",
+    "percent_change_24h": "4.12",
+    "percent_change_7d": "39.13",
+    "last_updated": "1513548881"
+  }
+]
