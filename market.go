@@ -45,12 +45,18 @@ func (c *TickerResponse) checkIfEmpty() error {
 
 //First return first item of response list
 func (c *TickerResponse) First() (*TickerItem, error) {
-	return &c.TickerList[0], c.checkIfEmpty()
+	if err := c.checkIfEmpty(); err != nil {
+		return nil, err
+	}
+	return &c.TickerList[0], nil
 }
 
 //Last return last item from response list
 func (c *TickerResponse) Last() (*TickerItem, error) {
-	return &c.TickerList[len(c.TickerList)-1], c.checkIfEmpty()
+	if err := c.checkIfEmpty(); err != nil {
+		return nil, err
+	}
+	return &c.TickerList[len(c.TickerList)-1], nil
 }
 
 //SortByPriceBtc sort response by price of bicoin field
