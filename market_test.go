@@ -194,32 +194,20 @@ func getFakeResponse() *TickerResponse {
 	response := TickerResponse{
 		TickerList: []TickerItem{},
 	}
-	response.TickerList = append(response.TickerList, TickerItem{Symbol: "SC",
-		Name:             "Siacoin",
-		MarketCapUsd:     "5",
-		PriceBtc:         "5",
-		AvailableSupply:  "5",
-		PercentChange24H: "5",
-		PercentChange7D:  "5",
-		PercentChange1H:  "5",
+	response.TickerList = append(response.TickerList, TickerItem{
+		Symbol: "SC", Name: "Siacoin", MarketCapUsd: "5",
+		PriceBtc: "5", AvailableSupply: "5", PercentChange24H: "5",
+		PercentChange7D: "5", PercentChange1H: "5",
 	})
-	response.TickerList = append(response.TickerList, TickerItem{Symbol: "BTC",
-		Name:             "Bitcoin",
-		MarketCapUsd:     "10",
-		PriceBtc:         "10",
-		AvailableSupply:  "10",
-		PercentChange24H: "10",
-		PercentChange7D:  "10",
-		PercentChange1H:  "10",
+	response.TickerList = append(response.TickerList, TickerItem{
+		Symbol: "BTC", Name: "Bitcoin", MarketCapUsd: "10",
+		PriceBtc: "10", AvailableSupply: "10", PercentChange24H: "10",
+		PercentChange7D: "10", PercentChange1H: "10",
 	})
-	response.TickerList = append(response.TickerList, TickerItem{Symbol: "NXT",
-		Name:             "NXT",
-		MarketCapUsd:     "2",
-		PriceBtc:         "2",
-		AvailableSupply:  "2",
-		PercentChange24H: "2",
-		PercentChange7D:  "2",
-		PercentChange1H:  "2",
+	response.TickerList = append(response.TickerList, TickerItem{
+		Symbol: "NXT", Name: "NXT", MarketCapUsd: "2",
+		PriceBtc: "2", AvailableSupply: "2", PercentChange24H: "2",
+		PercentChange7D: "2", PercentChange1H: "2",
 	})
 	return &response
 }
