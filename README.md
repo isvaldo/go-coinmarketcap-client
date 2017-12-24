@@ -1,6 +1,6 @@
 <p align="center"><img src="docs/img/troll-logo.jpg" width="360"></p>
 <p align="center">
-  <a href="https://travis-ci.org/isvaldo/go-coinmarketcap-client"><img src="https://travis-ci.org/isvaldo/go-coinmarketcap-client.svg?branch=master" alt="Build Status"/></a>
+  <a href="https://travis-ci.org/isvaldo/go-coinmarketcap-client"><img src="https://travis-ci.org/isvaldo/go-coinmarketcap-client.svg?branch=master"/></a>
   <a href="https://ci.appveyor.com/project/isvaldo/go-coinmarketcap-client"><img src="https://ci.appveyor.com/api/projects/status/github/isvaldo/go-coinmarketcap-client?svg=true&branch=master&passingText=Windows%20-%20OK&failingText=Windows%20-%20failed&pendingText=Windows%20-%20pending" alt="Windows Build Status"></a>
   <a href="https://goreportcard.com/report/github.com/isvaldo/go-coinmarketcap-client"><img src="https://goreportcard.com/badge/github.com/isvaldo/go-coinmarketcap-client" /></a>
   <a href="https://codeclimate.com/github/isvaldo/go-coinmarketcap-client/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0aed90e9051625c391bf/test_coverage" /></a>
