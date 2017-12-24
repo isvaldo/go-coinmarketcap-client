@@ -30,4 +30,4 @@ build: false
 deploy: false
 
 test_script:
-  - go build github.com/isvaldo/go-coinmarketcap-client/main
+  - go build github.com/isvaldo/go-coinmarketcap-client
