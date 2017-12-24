@@ -32,7 +32,7 @@ simple way to consult and explore the data of the coins
   
   func init() {
   	var err error
-  	Client, err = coinmarket.New("https://api.coinmarketcap.com")
+  	Client  = coinmarket.New("https://api.coinmarketcap.com")
   	if err != nil {
   		panic(err)
   	}

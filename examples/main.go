@@ -9,7 +9,7 @@ var Client coinmarket.Interface
 
 func init() {
 	var err error
-	Client, err = coinmarket.New("https://api.coinmarketcap.com")
+	Client = coinmarket.New("https://api.coinmarketcap.com")
 	if err != nil {
 		panic(err)
 	}

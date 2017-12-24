@@ -20,7 +20,7 @@ func getResponse(fileName string) (string, error) {
 
 func mustGetDummyTestServer(pathMock string, responseFile string) (Interface, error) {
 	const url = "https://api.coinmarketcap.com"
-	client, err := New(url)
+	client := New(url)
 	httpmock.Activate()
 	mockResponse, err := getResponse(responseFile)
 	clientPath := fmt.Sprintf("%s%s", url, pathMock)

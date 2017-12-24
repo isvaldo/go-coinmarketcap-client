@@ -10,26 +10,19 @@ type Interface interface {
 }
 
 //NewWithClient return a instance from MarketTicker, with optional client configuration
-func NewWithClient(baseURL string, client *http.Client) (Interface, error) {
+func NewWithClient(baseURL string, client *http.Client) Interface {
 	return NewMarketTicker(baseURL, client)
 }
 
-func Must(baseURL string) Interface {
-	intf, err := New(baseURL)
-	if err != nil {
-		panic(err)
-	}
-	return intf
-}
-
-func New(baseURL string) (Interface, error) {
+//NewWithClient Normal call
+func New(baseURL string) Interface {
 	return NewMarketTicker(baseURL, http.DefaultClient)
 }
 
 //NewMedia return a instance from MarketTicker, with optional client configuration
-func NewMarketTicker(baseURL string, client *http.Client) (Interface, error) {
+func NewMarketTicker(baseURL string, client *http.Client) Interface {
 	return &HTTP{
 		BaseURL:    baseURL,
 		HTTPClient: client,
-	}, nil
+	}
 }
