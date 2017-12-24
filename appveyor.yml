@@ -31,11 +31,5 @@ deploy: false
 
 test_script:
   - go get github.com/pkg/errors
-  - go get github.com/axw/gocov
-  - go get github.com/gopherjs/gopherjs
-  - go get github.com/jtolds/gls
-  - go get github.com/smartystreets/goconvey
-  - go get github.com/smartystreets/assertions
-  - go get golang.org/x/tools
   - go get gopkg.in/jarcoal/httpmock.v1
   - go build github.com/isvaldo/go-coinmarketcap-client
