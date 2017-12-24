@@ -30,4 +30,6 @@ build: false
 deploy: false
 
 test_script:
+  - go build github.com/golang/dep/cmd/dep
+  - go dep ensure
   - go build github.com/isvaldo/go-coinmarketcap-client
